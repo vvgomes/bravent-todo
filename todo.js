@@ -31,9 +31,12 @@ const eventHandlers = {
       R.identity))
 };
 
-export const handle = (command, state) =>
-  commandHandlers[command.type](command.data)(state);
+export const handle = (command) =>
+  commandHandlers[command.type](command.data);
 
-export const apply = (event, state) =>
-  eventHandlers[event.type](event.data)(state);
+export const apply = (event) =>
+  eventHandlers[event.type](event.data);
+
+export const currentState =
+  R.reduce((state, event) => apply(event)(state), []);
 

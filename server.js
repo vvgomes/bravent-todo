@@ -13,11 +13,11 @@ app.get("/events", (req, res) => {
 });
 
 app.get("/state", (req, res) => {
-  res.send(R.reduce(R.flip(todo.apply), [], eventStore));
+  res.send(todo.currentState(eventStore));
 });
 
 app.post("/commands", (req, res) => {
-  const state = R.reduce(R.flip(todo.apply), [], eventStore);
+  const state = todo.currentState(eventStore);
   const events = todo.handle(req.body, state);
   eventStore = R.concat(events, eventStore);
   res.send(events);
