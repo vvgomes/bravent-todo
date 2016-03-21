@@ -10,7 +10,7 @@ There are three categories of data in Functional Event Sourcing:
 - **State** => the current state of the application given the events;
 - **Commands** => data structures which represent state transitions.
  
-These represents the three categories of data we manipulate in the application. As far as the essential operations (functions) we perform on this data, they can be described as [Type Expressions](https://github.com/MostlyAdequate/mostly-adequate-guide/blob/master/ch7.md) like this:
+These represent the three categories of data we manipulate in the application. As far as the essential operations (functions) we perform on this data, they can be described as [Type Expressions](https://github.com/MostlyAdequate/mostly-adequate-guide/blob/master/ch7.md) like this:
 
 - `handle :: (command, state) -> [event]` => handles a command and produces events based on current state;
 - `apply :: (event, state) -> state` => applies events to (re)build the current state.
