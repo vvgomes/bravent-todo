@@ -25,7 +25,7 @@ There is no user interface, but the app exposes a JSON over HTTP API that looks 
 - `GET /events` => gives you the list of **events** which have already happened;
 - `POST /commands` => sends a new **command** to the application.
 
-The commands supported are:
+The supported commands are:
 - **Add task** => `{ "type": "addTask", "data": { "id": "666", "description": "homework" } }`
 - **Complete task** => `{ "type": "completeTask", "data": { "id": "666" } }`
 
