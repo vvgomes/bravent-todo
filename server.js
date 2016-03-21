@@ -3,24 +3,26 @@ import bodyParser from "body-parser";
 import R from "ramda";
 import * as todo from "./todo";
 
-let eventStore = [];
+let events = [];
 
 const app = express();
 app.use(bodyParser.json());
 
-app.get("/events", (req, res) => {
-  res.send(eventStore);
+app.get("/", (req, res) => {
+  res.send(todo.apply(events));
 });
 
-app.get("/state", (req, res) => {
-  res.send(todo.currentState(eventStore));
+app.get("/events", (req, res) => {
+  res.send(events);
 });
 
 app.post("/commands", (req, res) => {
-  const state = todo.currentState(eventStore);
-  const events = todo.handle(req.body, state);
-  eventStore = R.concat(events, eventStore);
-  res.send(events);
+  events = R.compose(
+    R.concat(events),
+    todo.handle(req.body),
+    todo.apply
+  )(events);
+  res.sendStatus(202);
 });
 
 const server = app.listen(3000, () => {
