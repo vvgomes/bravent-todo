@@ -11,13 +11,16 @@
     "body-parser": "^1.15.0",
     "express": "^4.13.4",
     "node-uuid": "^1.4.7",
-    "ramda": "^0.19.1"
+    "ramda": "^0.19.1",
+    "data.maybe": "1.2.0",
+    "data.either": "1.2.0",
+    "data.validation": "^1.2.0"
   },
   "devDependencies": {
     "mocha": "^2.4.5"
   },
   "scripts": {
-    "test": "mocha --compilers js:babel-register",
+    "test": "mocha --compilers js:babel-register --recursive",
     "start": "babel-node --presets es2015 ./server.js"
   }
 }
