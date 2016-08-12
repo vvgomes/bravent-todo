@@ -4,12 +4,15 @@ import Validation from "data.validation"
 const Success = Validation.Success;
 const Failure = Validation.Failure;
 
-export const hasType = (command) => R.has(prop)
 
-const hasProp = (prop) =>
+const checkProp = (prop) =>
   R.ifElse(R.has(prop),
     Success,
     R.always(Failure([`Missing command ${prop}`])));
+
+export const Commands = {
+  hasType: checkProp("type")
+}
 
 export const canHandle = (handlers) => 
   R.ifElse(
