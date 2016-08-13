@@ -1,20 +1,18 @@
 import R from "ramda";
 import Validation from "data.validation"
 
+const Commands = {};
 const Success = Validation.Success;
 const Failure = Validation.Failure;
-
 
 const checkProp = (prop) =>
   R.ifElse(R.has(prop),
     Success,
-    R.always(Failure([`Missing command ${prop}`])));
+    R.always(Failure([`Command must have ${prop}`])));
 
-export const Commands = {
-  hasType: checkProp("type")
-}
+Commands.hasType = checkProp("type");
 
-export const canHandle = (handlers) => 
+const canHandle = (handlers) => 
   R.ifElse(
     R.compose(
       R.flip(R.has)(handlers),
@@ -26,14 +24,14 @@ export const canHandle = (handlers) =>
       R.concat("No handler found for "),
       R.prop("type")));
 
-export const validate = (command, validations) =>
+const validate = (command, validations) =>
   R.reduce((result, validation) =>
     result.ap(validation(command)),
     Success(R.curry((...args) => command)),
     validations);
 
 // handle :: (state, command) -> [event]
-export const handle = (handlers) => (state, command) => {
+const handle = (handlers) => (state, command) => {
   const result = validate(command, [
     hasProp("type"),
     hasProp("payload"),
@@ -44,3 +42,4 @@ export const handle = (handlers) => (state, command) => {
     handlers[command.type](state, command) : result;
 }
 
+export default Commands;

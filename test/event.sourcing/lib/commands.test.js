@@ -1,21 +1,43 @@
 import assert from "assert";
 import Commands from "../../../event.sourcing/lib/commands";
-
 import Validation from "data.validation"
 
 const Success = Validation.Success;
 const Failure = Validation.Failure;
 
 describe("Commands", () => {
+
   describe("hasType", () => {
     it("succeeds when command has a type", () => {
-      console.log("Commands:", Commands);
-      const command = {type: "addTask"};
-      assert.equal(Success(command), Commands.hasType(command));
+      assert.deepEqual(
+        Commands.hasType({ type: "addTask" }),
+        Success(command)
+      );
     });
 
     it("fails when command doen't have a type", () => {
-      assert.equal(Failure(["Command must have type."]), Commands.hasType({}));
+      assert.deepEqual(
+        Commands.hasType({}),
+        Failure(["Command must have type"])
+      );
     });
   });
+
+  describe("hasPayload", () => {
+    it("succeeds when command has a payload", () => {
+      assert.deepEqual(
+        Commands.hasType({ payload: {} }),
+        Success(command)
+      );
+    });
+
+    it("fails when command doen't have a payload", () => {
+      assert.deepEqual(
+        Commands.hasType({}),
+        Failure(["Command must have type"])
+      );
+    });
+  });
+
+
 });
