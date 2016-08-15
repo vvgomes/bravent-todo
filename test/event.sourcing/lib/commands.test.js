@@ -7,37 +7,44 @@ const Failure = Validation.Failure;
 
 describe("Commands", () => {
 
-  describe("hasType", () => {
-    it("succeeds when command has a type", () => {
+  describe("handle", () => {
+    const handlers = {
+      addTask: (state, command) => Success({})
+    };
+
+    it("handles the command when handler is found", () => {
+      const command = {
+        type: "addTask",
+        payload: {}
+      };
+
       assert.deepEqual(
-        Commands.hasType({ type: "addTask" }),
-        Success(command)
+        Commands.handle(handlers, {}, command),
+        Success({})
       );
     });
 
-    it("fails when command doen't have a type", () => {
+    it("fails when there is no handler for command", () => {
+      const command = {
+        type: "doFoo",
+        payload: {}
+      };
+
       assert.deepEqual(
-        Commands.hasType({}),
-        Failure(["Command must have type"])
+        Commands.handle(handlers, {}, command),
+        Failure(["Cannot handle command of type doFoo"])
+      );
+    });
+
+    it("fails when command has no type", () => {
+      const command = {
+        payload: {}
+      };
+
+      assert.deepEqual(
+        Commands.handle(handlers, {}, command),
+        Failure(["Cannot handle command of type undefined"])
       );
     });
   });
-
-  describe("hasPayload", () => {
-    it("succeeds when command has a payload", () => {
-      assert.deepEqual(
-        Commands.hasType({ payload: {} }),
-        Success(command)
-      );
-    });
-
-    it("fails when command doen't have a payload", () => {
-      assert.deepEqual(
-        Commands.hasType({}),
-        Failure(["Command must have type"])
-      );
-    });
-  });
-
-
 });
