@@ -1,38 +1,29 @@
 import R from "ramda";
+import moment from "moment"
+import Validation from "data.validation"
+import EventSourcing from "./event.sourcing/event.sourcing"
 
-const commandHandlers = {
-  addTask: (data) =>
-    R.ifElse(
-      R.find(R.where({ id: R.equals(data.id) })),
-      R.empty,
-      R.always([{
-        type: "taskAdded",
-        data: data
-      }])),
+const Todo = {};
 
-  completeTask: (data) => 
-    R.ifElse(
-      R.find(R.where({ id: R.equals(data.id) })),
-      R.always([{
-        type: "taskCompleted",
-        data: data
-      }]),
-      R.empty)
-};
+Todo.app = EventSourcing.buildApp({
+  eventHandlers: {
+    taskAdded: (state, event) =>
+      R.concat(state, event.payload)
+  },
 
-const eventHandlers = {
-  taskAdded: (data) =>
-    R.append(R.assoc("completed", false, data)),
+  commandHandlers: {
+    addTask: (state, command) =>
+      Validation.Success([
+        {
+          type: "taskAdded",
+          timestamp: moment().format("YYYYMMDDTHHmmss.SSS"),
+          payload: command.payload
+        }
+      ])
+  },
 
-  taskCompleted: (data) =>
-    R.map(R.ifElse(
-      R.propEq("id", data.id),
-      R.set(R.lensProp("completed"), true),
-      R.identity))
-};
+  initialState: []
+});
 
-export const handle = (command) =>
-  commandHandlers[command.type](command.data);
+export default Todo;
 
-export const apply = R.reduce((state, event) =>
-  eventHandlers[event.type](event.data)(state), []);

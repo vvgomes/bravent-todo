@@ -2,12 +2,13 @@ import R from "ramda";
 
 const Aggregates = {};
 
-// state :: (state, event) -> state
-Aggregates.build = (apply, initialState, events) =>
+// state :: (initial, events) -> current
+Aggregates.build = R.curry((apply, initialState, events) =>
   R.compose(
     R.reduce(apply, initialState),
     R.sortBy(R.prop("timestamp"))
-  )(events);
+  )(events));
 
 export default Aggregates;
+
 
