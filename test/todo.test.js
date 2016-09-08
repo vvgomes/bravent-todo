@@ -1,81 +1,85 @@
 import assert from "assert";
-import Validation from "data.validation";
-import Todo from "../todo";
+import Todo from "../lib/todo";
+import { append, last, head } from "ramda";
 
 describe("Todo", () => {
+  let events;
+  let ids;
+  let times;
 
-  describe("command handlers", () => {
+  const collectIdAndTime = (events) => {
+    ids = append(last(events).id, ids);
+    times = append(last(events).timestamp, times);
+  }
 
-    describe("addTask", () => {
-      xit("produces a taskAdded event", () => {
-        const command = {
-          type: "addTask",
-          payload: "wash dishes" 
-        };
-
-        assert.deepEqual(
-          Todo.app([]).handle(command),
-          Validation.Success([
-            {
-              type: "taskAdded",
-              timestamp: "20160815T080910.124",
-              payload: "wash dishes"
-            }
-          ])
-        );
-      });
-
-      xit("fails when task description is empty", () => {
-        const command = {
-          type: "addTask",
-          payload: "" 
-        };
-
-        assert.deepEqual(
-          Todo.app([]).handle(command),
-          Validation.Failure(["Task description must be provided"])
-        );
-      });
-
-      xit("fails when task description is duplicated", () => {
-        const events = [
-          {
-            type: "taskAdded",
-            timestamp: "20160815T080910.124",
-            payload: "wash dishes"
-          }
-        ];
-
-        const command = {
-          type: "addTask",
-          payload: "wash dishes" 
-        };
-
-        assert.deepEqual(
-          Todo.app([]).handle(command),
-          Validation.Failure(["Task description must be unique"])
-        );
-      });
-    });
+  beforeEach(() => {
+    events = [];
+    ids = [];
+    times = [];
   });
 
-  describe("event handlers", () => {
-    describe("taskAdded", () => {
-      xit("causes a new task to be added to the todo list", () => {
-        const events = [
-          {
-            type: "taskAdded",
-            timestamp: "20160815T080910.124",
-            payload: "take trash out"
-          }
-        ];
+  it("starts with an empty task list", () => {
+    const state = Todo.of(events).state();
+    assert.deepEqual(state, { tasks: [] });
+  });
 
-        assert.deepEqual(
-          Todo.app(events).state(),
-          ["take trash out"]
-        );
-      });
-    });
+  it("adds new tasks", () => {
+    const state =
+      Todo
+        .of(events)
+        .dispatch({ type: "addTask", description: "wash dishes" }, collectIdAndTime)
+        .dispatch({ type: "addTask", description: "walk the dog" }, collectIdAndTime)
+        .state();
+
+    assert.deepEqual(
+      state,
+      {
+        tasks: [
+          {
+            id: ids[0],
+            description: "wash dishes",
+            completed: false,
+            timestamp: times[0]
+          },
+          {
+            id: ids[1],
+            description: "walk the dog",
+            completed: false,
+            timestamp: times[1]
+          }
+        ]
+      }
+    );
+  });
+
+  it("toggles an existing task", () => {
+    const state =
+      Todo
+        .of(events)
+        .dispatch({ type: "addTask", description: "wash dishes" }, collectIdAndTime)
+        .dispatch({ type: "addTask", description: "walk the dog" }, collectIdAndTime)
+        .dispatch({ type: "toggleTask", id: head(ids) })
+        .state();
+
+    assert.deepEqual(
+      state,
+      {
+        tasks: [
+          {
+            id: ids[0],
+            description: "wash dishes",
+            completed: true,
+            timestamp: times[0]
+          },
+          {
+            id: ids[1],
+            description: "walk the dog",
+            completed: false,
+            timestamp: times[1]
+          }
+        ]
+      }
+    );
   });
 });
 
