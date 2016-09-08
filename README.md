@@ -1,4 +1,4 @@
-# Bravent Todo
+# Bravent Todo ✔
 
 This is a Javascript todo app developed with [Bravent](https://github.com/vvgomes/bravent). The goal of this project is to demonstrate the usage of the library to build applications based on [Event Sourcing](http://martinfowler.com/eaaDev/EventSourcing.html). 
 
@@ -15,7 +15,7 @@ This is a Javascript todo app developed with [Bravent](https://github.com/vvgome
 Request:
 
 ```bash
-curl localhost:3000/commands -X POST \
+$ curl localhost:3000/commands -X POST \
 --data '{"type": "addTask", "description": "wash dishes"}' \
 -H 'Content-Type:application/json'
 ```
@@ -23,12 +23,12 @@ curl localhost:3000/commands -X POST \
 Response:
 
 ```json
-{
+[{
   "type": "taskAdded",
   "id": "cf373798-efbc-4219-8fb3-e10d4c505a0b",
   "description": "wash dishes",
   "timestamp": "2016-09-08T01:47:00.490+0000"
-}
+}]
 ```
 
 ### Toggle a task
@@ -36,7 +36,7 @@ Response:
 Request:
 
 ```bash
-curl localhost:3000/commands -X POST \
+$ curl localhost:3000/commands -X POST \
 --data '{"type": "toggleTask", "id": "cf373798-efbc-4219-8fb3-e10d4c505a0b"}' \
 -H 'Content-Type:application/json'
 ```
@@ -44,11 +44,11 @@ curl localhost:3000/commands -X POST \
 Response:
 
 ```json
-{
+[{
   "type": "taskToggled",
   "id": "c5cdc877-19da-48eb-99f3-983cde01379f",
   "timestamp": "2016-09-08T01:48:00.490+0000"
-}
+}]
 ```
 
 ### See the task list
@@ -56,7 +56,7 @@ Response:
 Request:
 
 ```bash
-curl localhost:3000/state 
+$ curl localhost:3000/state 
 ```
 
 Response:
@@ -79,7 +79,7 @@ Response:
 Request:
 
 ```bash
-curl localhost:3000/events 
+$ curl localhost:3000/events 
 ```
 
 Response:
@@ -100,8 +100,8 @@ Response:
 ]
 ```
 
-The `/command` end-point accepts **commands** designated by their `type` property. (This approach is better described in [this blog post](http://vvgomes.com/cqrs-and-rest/).) As a result of successful command request, new events are responded to the client. As the sample responses above shows, there are two types of **domain events** in the app: `addTask` and `toggleTask`. Those event are used to reconstruct the **current state** of the app (the task list).
+The `/command` end-point accepts **commands** designated by their `type` property. (This is a variation of the approach described in [this blog post](http://vvgomes.com/cqrs-and-rest/).) As a result of a successful command request, new events are responded to the client. As the samples above show, there are two types of **domain events** in the app: `addTask` and `toggleTask`. Those event are used to reconstruct the **current state** of the app (the task list).
 
 ## License
 
-Use this code as you please.
+Feel free to use this code as you please.
