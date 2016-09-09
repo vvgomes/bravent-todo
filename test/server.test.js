@@ -1,6 +1,6 @@
 import request from "supertest";
 import sinon from "sinon";
-import createApp from "../lib/app";
+import createApp from "../lib/server";
 import InMemoryEventStore from "../lib/event.store";
 
 describe("Todo webapp", () => {

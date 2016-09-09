@@ -27,6 +27,6 @@
   },
   "scripts": {
     "test": "mocha --compilers js:babel-register --recursive",
-    "start": "babel-node --presets es2015 ./server.js"
+    "start": "babel-node --presets es2015 ./main.js"
   }
 }
