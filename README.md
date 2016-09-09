@@ -87,7 +87,7 @@ Response:
 ```json
 [
   {
-	  "type": "taskAdded",
+    "type": "taskAdded",
 	  "id": "cf373798-efbc-4219-8fb3-e10d4c505a0b",
 	  "description": "wash dishes",
 	  "timestamp": "2016-09-08T01:47:00.490+0000"
