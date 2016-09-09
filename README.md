@@ -16,8 +16,8 @@ Request:
 
 ```bash
 $ curl localhost:3000/commands -X POST \
---data '{"type": "addTask", "description": "wash dishes"}' \
--H 'Content-Type:application/json'
+  --data '{"type": "addTask", "description": "wash dishes"}' \
+  -H 'Content-Type:application/json'
 ```
 
 Response:
@@ -37,8 +37,8 @@ Request:
 
 ```bash
 $ curl localhost:3000/commands -X POST \
---data '{"type": "toggleTask", "id": "cf373798-efbc-4219-8fb3-e10d4c505a0b"}' \
--H 'Content-Type:application/json'
+  --data '{"type": "toggleTask", "id": "cf373798-efbc-4219-8fb3-e10d4c505a0b"}' \
+  -H 'Content-Type:application/json'
 ```
 
 Response:
