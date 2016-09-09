@@ -100,7 +100,7 @@ Response:
 ]
 ```
 
-The `/command` end-point accepts **commands** identified by the `type` property. (This is a variation of the approach described in [this blog post](http://vvgomes.com/cqrs-and-rest/).) As a result of a successful command request, new events are responded to the client. As the samples above show, there are two types of **domain events** in the app: `addTask` and `toggleTask`. Those event are used to reconstruct the **current state** of the app (the task list).
+The `/command` end-point accepts **commands** identified by the `type` property. (This is a variation of the approach described in [this blog post](http://vvgomes.com/cqrs-and-rest/).) As a result of a successful command request, new events are responded to the client. As the samples above show, there are two types of **domain events** in the app: `taskAdded` and `taskToggled`. Those event are used to reconstruct the **current state** of the app (the task list).
 
 ## License
 
