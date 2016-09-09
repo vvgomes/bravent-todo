@@ -9,7 +9,7 @@
     "babel-cli": "^6.6.5",
     "babel-preset-es2015": "^6.6.0",
     "body-parser": "^1.15.0",
-    "bravent": "^0.0.6",
+    "bravent": "^0.0.7",
     "express": "^4.13.4",
     "moment": "^2.14.1",
     "ramda": "^0.19.1",
