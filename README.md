@@ -88,14 +88,14 @@ Response:
 [
   {
     "type": "taskAdded",
-	  "id": "cf373798-efbc-4219-8fb3-e10d4c505a0b",
-	  "description": "wash dishes",
-	  "timestamp": "2016-09-08T01:47:00.490+0000"
-	},
-	{
-	  "type": "taskToggled",
-	  "id": "c5cdc877-19da-48eb-99f3-983cde01379f",
-	  "timestamp": "2016-09-08T01:48:00.490+0000"
+    "id": "cf373798-efbc-4219-8fb3-e10d4c505a0b",
+    "description": "wash dishes",
+    "timestamp": "2016-09-08T01:47:00.490+0000"
+  },
+  {
+    "type": "taskToggled",
+    "id": "c5cdc877-19da-48eb-99f3-983cde01379f",
+    "timestamp": "2016-09-08T01:48:00.490+0000"
   }
 ]
 ```
