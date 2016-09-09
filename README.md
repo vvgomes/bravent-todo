@@ -86,21 +86,21 @@ Response:
 
 ```json
 [
-	{
-		"type": "taskAdded",
-		"id": "cf373798-efbc-4219-8fb3-e10d4c505a0b",
-		"description": "wash dishes",
-		"timestamp": "2016-09-08T01:47:00.490+0000"
+  {
+	  "type": "taskAdded",
+	  "id": "cf373798-efbc-4219-8fb3-e10d4c505a0b",
+	  "description": "wash dishes",
+	  "timestamp": "2016-09-08T01:47:00.490+0000"
 	},
 	{
-		"type": "taskToggled",
-		"id": "c5cdc877-19da-48eb-99f3-983cde01379f",
-		"timestamp": "2016-09-08T01:48:00.490+0000"
-	}
+	  "type": "taskToggled",
+	  "id": "c5cdc877-19da-48eb-99f3-983cde01379f",
+	  "timestamp": "2016-09-08T01:48:00.490+0000"
+  }
 ]
 ```
 
-The `/command` end-point accepts **commands** designated by their `type` property. (This is a variation of the approach described in [this blog post](http://vvgomes.com/cqrs-and-rest/).) As a result of a successful command request, new events are responded to the client. As the samples above show, there are two types of **domain events** in the app: `addTask` and `toggleTask`. Those event are used to reconstruct the **current state** of the app (the task list).
+The `/command` end-point accepts **commands** identified by the `type` property. (This is a variation of the approach described in [this blog post](http://vvgomes.com/cqrs-and-rest/).) As a result of a successful command request, new events are responded to the client. As the samples above show, there are two types of **domain events** in the app: `addTask` and `toggleTask`. Those event are used to reconstruct the **current state** of the app (the task list).
 
 ## License
 
