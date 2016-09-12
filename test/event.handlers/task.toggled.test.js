@@ -7,13 +7,13 @@ describe("taskToggled()", () => {
       tasks: [
         {
           id: "666",
-          description: "wash dishes",
+          text: "wash dishes",
           completed: false,
           timestamp: "2016-09-08T01:47:00.490+0000"
         },
         {
           id: "667",
-          description: "walk the dog",
+          text: "walk the dog",
           completed: false,
           timestamp: "2016-09-08T01:48:00.490+0000"
         }
@@ -32,13 +32,13 @@ describe("taskToggled()", () => {
         tasks: [
           {
             id: "666",
-            description: "wash dishes",
+            text: "wash dishes",
             completed: true,
             timestamp: "2016-09-08T01:47:00.490+0000"
           },
           {
             id: "667",
-            description: "walk the dog",
+            text: "walk the dog",
             completed: false,
             timestamp: "2016-09-08T01:48:00.490+0000"
           }
@@ -52,13 +52,13 @@ describe("taskToggled()", () => {
       tasks: [
         {
           id: "666",
-          description: "wash dishes",
+          text: "wash dishes",
           completed: true,
           timestamp: "2016-09-08T01:47:00.490+0000"
         },
         {
           id: "667",
-          description: "walk the dog",
+          text: "walk the dog",
           completed: false,
           timestamp: "2016-09-08T01:48:00.490+0000"
         }
@@ -77,13 +77,13 @@ describe("taskToggled()", () => {
         tasks: [
           {
             id: "666",
-            description: "wash dishes",
+            text: "wash dishes",
             completed: false,
             timestamp: "2016-09-08T01:47:00.490+0000"
           },
           {
             id: "667",
-            description: "walk the dog",
+            text: "walk the dog",
             completed: false,
             timestamp: "2016-09-08T01:48:00.490+0000"
           }
@@ -97,7 +97,7 @@ describe("taskToggled()", () => {
       tasks: [
         {
           id: "667",
-          description: "walk the dog",
+          text: "walk the dog",
           completed: false,
           timestamp: "2016-09-08T01:48:00.490+0000"
         }
@@ -116,7 +116,7 @@ describe("taskToggled()", () => {
         tasks: [
           {
             id: "667",
-            description: "walk the dog",
+            text: "walk the dog",
             completed: false,
             timestamp: "2016-09-08T01:48:00.490+0000"
           }

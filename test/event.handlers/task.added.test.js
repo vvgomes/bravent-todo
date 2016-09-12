@@ -8,7 +8,7 @@ describe("taskAdded()", () => {
     const event = {
       type: "taskAdded",
       id: "c5cdc877-19da-48eb-99f3-983cde01379f",
-      description: "wash dishes",
+      text: "wash dishes",
       timestamp: "2016-09-08T01:47:00.490+0000"
     };
 
@@ -18,7 +18,7 @@ describe("taskAdded()", () => {
         tasks: [
           {
             id: "c5cdc877-19da-48eb-99f3-983cde01379f",
-            description: "wash dishes",
+            text: "wash dishes",
             completed: false,
             timestamp: "2016-09-08T01:47:00.490+0000"
           }

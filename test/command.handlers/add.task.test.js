@@ -13,42 +13,42 @@ describe("addTask()", () => {
 
     const command = {
       type: "addTask",
-      description: "wash dishes"
+      text: "wash dishes"
     };
 
     assert.deepEqual(
       addTask(state, command, uuidGen, clock),
       Success([{
         type: "taskAdded",
-        description: "wash dishes",
+        text: "wash dishes",
         id: "c5cdc877-19da-48eb-99f3-983cde01379f",
         timestamp: "2016-09-08T01:47:00.490+0000"
       }])
     );
   });
 
-  it("fails when the task does not have a description", () => {
+  it("fails when the task does not have a text description", () => {
     const state = { tasks: [] };
 
     const command = { type: "addTask" };
 
     assert.deepEqual(
       addTask(state, command),
-      Failure(["Task must have a description."])
+      Failure(["Task must have a text description."])
     );
   });
 
-  it("fails when the task description is empty", () => {
+  it("fails when the task text is empty", () => {
     const state = { tasks: [] };
 
     const command = {
       type: "addTask",
-      description: ""
+      text: ""
     };
 
     assert.deepEqual(
       addTask(state, command),
-      Failure(["Task description must not be empty."])
+      Failure(["Task text must not be empty."])
     );
   });
 
@@ -56,18 +56,18 @@ describe("addTask()", () => {
     const state = { tasks: [
       {
         type: "taskAdded",
-        description: "wash dishes"
+        text: "wash dishes"
       }
     ]};
 
     const command = {
       type: "addTask",
-      description: "wash dishes"
+      text: "wash dishes"
     };
 
     assert.deepEqual(
       addTask(state, command),
-      Failure(["Task description must be unique."])
+      Failure(["Task text must be unique."])
     );
   });
 });

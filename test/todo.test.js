@@ -27,8 +27,8 @@ describe("Todo", () => {
     const state =
       Todo
         .of(events)
-        .dispatch({ type: "addTask", description: "wash dishes" }, collectIdAndTime)
-        .dispatch({ type: "addTask", description: "walk the dog" }, collectIdAndTime)
+        .dispatch({ type: "addTask", text: "wash dishes" }, collectIdAndTime)
+        .dispatch({ type: "addTask", text: "walk the dog" }, collectIdAndTime)
         .state();
 
     assert.deepEqual(
@@ -37,13 +37,13 @@ describe("Todo", () => {
         tasks: [
           {
             id: ids[0],
-            description: "wash dishes",
+            text: "wash dishes",
             completed: false,
             timestamp: times[0]
           },
           {
             id: ids[1],
-            description: "walk the dog",
+            text: "walk the dog",
             completed: false,
             timestamp: times[1]
           }
@@ -56,8 +56,8 @@ describe("Todo", () => {
     const state =
       Todo
         .of(events)
-        .dispatch({ type: "addTask", description: "wash dishes" }, collectIdAndTime)
-        .dispatch({ type: "addTask", description: "walk the dog" }, collectIdAndTime)
+        .dispatch({ type: "addTask", text: "wash dishes" }, collectIdAndTime)
+        .dispatch({ type: "addTask", text: "walk the dog" }, collectIdAndTime)
         .dispatch({ type: "toggleTask", id: head(ids) })
         .state();
 
@@ -67,13 +67,13 @@ describe("Todo", () => {
         tasks: [
           {
             id: ids[0],
-            description: "wash dishes",
+            text: "wash dishes",
             completed: true,
             timestamp: times[0]
           },
           {
             id: ids[1],
-            description: "walk the dog",
+            text: "walk the dog",
             completed: false,
             timestamp: times[1]
           }

@@ -3,7 +3,7 @@ import sinon from "sinon";
 import createApp from "../lib/server";
 import InMemoryEventStore from "../lib/event.store";
 
-describe("Todo webapp", () => {
+describe("Todo server", () => {
   let store;
   let app;
 
@@ -13,7 +13,7 @@ describe("Todo webapp", () => {
     store.add([{ 
       type: "taskAdded",
       id: "c5cdc877-19da-48eb-99f3-983cde01379f",
-      description: "wash dishes",
+      text: "wash dishes",
       timestamp: "2016-09-08T01:47:00.490+0000"
     }]);
 
@@ -29,7 +29,7 @@ describe("Todo webapp", () => {
         .expect(200, [{
           type: "taskAdded",
           id: "c5cdc877-19da-48eb-99f3-983cde01379f",
-          description: "wash dishes",
+          text: "wash dishes",
           timestamp: "2016-09-08T01:47:00.490+0000"
         }], done);
     });
@@ -44,7 +44,7 @@ describe("Todo webapp", () => {
         .expect(200, {
           tasks: [{
             id: "c5cdc877-19da-48eb-99f3-983cde01379f",
-            description: "wash dishes",
+            text: "wash dishes",
             completed: false,
             timestamp: "2016-09-08T01:47:00.490+0000"
           }]
