@@ -1,21 +1,21 @@
-import taskAdded from "../../lib/event.handlers/task.added";
+import todoAdded from "../../lib/event.handlers/todo.added";
 import assert from "assert";
 
-describe("taskAdded()", () => {
-  it("adds a new task to the task list", () => {
-    const state = { tasks: [] };
+describe("todoAdded()", () => {
+  it("adds a new todo to the todo list", () => {
+    const state = { todos: [] };
 
     const event = {
-      type: "taskAdded",
+      type: "todoAdded",
       id: "c5cdc877-19da-48eb-99f3-983cde01379f",
       text: "wash dishes",
       timestamp: "2016-09-08T01:47:00.490+0000"
     };
 
     assert.deepEqual(
-      taskAdded(state, event),
+      todoAdded(state, event),
       {
-        tasks: [
+        todos: [
           {
             id: "c5cdc877-19da-48eb-99f3-983cde01379f",
             text: "wash dishes",

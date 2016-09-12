@@ -1,10 +1,10 @@
-import taskToggled from "../../lib/event.handlers/task.toggled";
+import todoToggled from "../../lib/event.handlers/todo.toggled";
 import assert from "assert";
 
-describe("taskToggled()", () => {
-  it("marks an uncompleted task as completed", () => {
+describe("todoToggled()", () => {
+  it("marks an uncompleted todo as completed", () => {
     const state = {
-      tasks: [
+      todos: [
         {
           id: "666",
           text: "wash dishes",
@@ -21,15 +21,15 @@ describe("taskToggled()", () => {
     };
 
     const event = {
-      type: "taskToggled",
+      type: "todoToggled",
       id: "666",
       timestamp: "2016-09-08T01:48:00.490+0000"
     };
 
     assert.deepEqual(
-      taskToggled(state, event),
+      todoToggled(state, event),
       {
-        tasks: [
+        todos: [
           {
             id: "666",
             text: "wash dishes",
@@ -47,9 +47,9 @@ describe("taskToggled()", () => {
     );
   });
 
-  it("marks a completed task back to uncompleted", () => {
+  it("marks a completed todo back to uncompleted", () => {
     const state = {
-      tasks: [
+      todos: [
         {
           id: "666",
           text: "wash dishes",
@@ -66,15 +66,15 @@ describe("taskToggled()", () => {
     };
 
     const event = {
-      type: "taskToggled",
+      type: "todoToggled",
       id: "666",
       timestamp: "2016-09-08T01:48:00.490+0000"
     };
 
     assert.deepEqual(
-      taskToggled(state, event),
+      todoToggled(state, event),
       {
-        tasks: [
+        todos: [
           {
             id: "666",
             text: "wash dishes",
@@ -92,9 +92,9 @@ describe("taskToggled()", () => {
     );
   });
 
-  it("does nothing when the task cannot be found", () => {
+  it("does nothing when the todo cannot be found", () => {
     const state = {
-      tasks: [
+      todos: [
         {
           id: "667",
           text: "walk the dog",
@@ -105,15 +105,15 @@ describe("taskToggled()", () => {
     };
 
     const event = {
-      type: "taskToggled",
+      type: "todoToggled",
       id: "666",
       timestamp: "2016-09-08T01:48:00.490+0000"
     };
 
     assert.deepEqual(
-      taskToggled(state, event),
+      todoToggled(state, event),
       {
-        tasks: [
+        todos: [
           {
             id: "667",
             text: "walk the dog",

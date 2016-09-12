@@ -10,13 +10,13 @@ This is a Javascript todo app developed with [Bravent](https://github.com/vvgome
 
 ## API
 
-### Add a new task
+### Add a new todo item
 
 Request:
 
 ```bash
 $ curl localhost:3000/commands -X POST \
-  --data '{"type": "addTask", "description": "wash dishes"}' \
+  --data '{"type": "addTodo", "text": "wash dishes"}' \
   -H 'Content-Type:application/json'
 ```
 
@@ -24,20 +24,20 @@ Response:
 
 ```json
 [{
-  "type": "taskAdded",
+  "type": "todoAdded",
   "id": "cf373798-efbc-4219-8fb3-e10d4c505a0b",
-  "description": "wash dishes",
+  "text": "wash dishes",
   "timestamp": "2016-09-08T01:47:00.490+0000"
 }]
 ```
 
-### Toggle a task
+### Toggle a todo
 
 Request:
 
 ```bash
 $ curl localhost:3000/commands -X POST \
-  --data '{"type": "toggleTask", "id": "cf373798-efbc-4219-8fb3-e10d4c505a0b"}' \
+  --data '{"type": "toggleTodo", "id": "cf373798-efbc-4219-8fb3-e10d4c505a0b"}' \
   -H 'Content-Type:application/json'
 ```
 
@@ -45,13 +45,13 @@ Response:
 
 ```json
 [{
-  "type": "taskToggled",
+  "type": "todoToggled",
   "id": "c5cdc877-19da-48eb-99f3-983cde01379f",
   "timestamp": "2016-09-08T01:48:00.490+0000"
 }]
 ```
 
-### See the task list
+### See the todo list
 
 Request:
 
@@ -63,10 +63,10 @@ Response:
 
 ```json
 {
-  "tasks": [
+  "todos": [
     {
       "id": "c5cdc877-19da-48eb-99f3-983cde01379f",
-      "description": "wash dishes",
+      "text": "wash dishes",
       "completed": true,
       "timestamp": "2016-09-08T01:47:00.490+0000"
     }
@@ -87,20 +87,20 @@ Response:
 ```json
 [
   {
-    "type": "taskAdded",
+    "type": "todoAdded",
     "id": "cf373798-efbc-4219-8fb3-e10d4c505a0b",
-    "description": "wash dishes",
+    "text": "wash dishes",
     "timestamp": "2016-09-08T01:47:00.490+0000"
   },
   {
-    "type": "taskToggled",
+    "type": "todoToggled",
     "id": "c5cdc877-19da-48eb-99f3-983cde01379f",
     "timestamp": "2016-09-08T01:48:00.490+0000"
   }
 ]
 ```
 
-The `/command` end-point accepts **commands** identified by the `type` property. (This is a variation of the approach described in [this blog post](http://vvgomes.com/cqrs-and-rest/).) As a result of a successful command request, new events are responded to the client. As the samples above show, there are two types of **domain events** in the app: `taskAdded` and `taskToggled`. Those event are used to reconstruct the **current state** of the app (the task list).
+The `/command` end-point accepts **commands** identified by the `type` property. (This is a variation of the approach described in [this blog post](http://vvgomes.com/cqrs-and-rest/).) As a result of a successful command request, new events are responded to the client. As the samples above show, there are two types of **domain events** in the app: `todoAdded` and `todoToggled`. Those event are used to reconstruct the **current state** of the app (the todo list).
 
 ## License
 

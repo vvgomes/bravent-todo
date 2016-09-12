@@ -18,23 +18,23 @@ describe("Todo", () => {
     times = [];
   });
 
-  it("starts with an empty task list", () => {
+  it("starts with an empty todo list", () => {
     const state = Todo.of(events).state();
-    assert.deepEqual(state, { tasks: [] });
+    assert.deepEqual(state, { todos: [] });
   });
 
-  it("adds new tasks", () => {
+  it("adds new todos", () => {
     const state =
       Todo
         .of(events)
-        .dispatch({ type: "addTask", text: "wash dishes" }, collectIdAndTime)
-        .dispatch({ type: "addTask", text: "walk the dog" }, collectIdAndTime)
+        .dispatch({ type: "addTodo", text: "wash dishes" }, collectIdAndTime)
+        .dispatch({ type: "addTodo", text: "walk the dog" }, collectIdAndTime)
         .state();
 
     assert.deepEqual(
       state,
       {
-        tasks: [
+        todos: [
           {
             id: ids[0],
             text: "wash dishes",
@@ -52,19 +52,19 @@ describe("Todo", () => {
     );
   });
 
-  it("toggles an existing task", () => {
+  it("toggles an existing todo", () => {
     const state =
       Todo
         .of(events)
-        .dispatch({ type: "addTask", text: "wash dishes" }, collectIdAndTime)
-        .dispatch({ type: "addTask", text: "walk the dog" }, collectIdAndTime)
-        .dispatch({ type: "toggleTask", id: head(ids) })
+        .dispatch({ type: "addTodo", text: "wash dishes" }, collectIdAndTime)
+        .dispatch({ type: "addTodo", text: "walk the dog" }, collectIdAndTime)
+        .dispatch({ type: "toggleTodo", id: head(ids) })
         .state();
 
     assert.deepEqual(
       state,
       {
-        tasks: [
+        todos: [
           {
             id: ids[0],
             text: "wash dishes",
