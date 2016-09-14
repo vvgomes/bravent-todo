@@ -1,8 +1,8 @@
 import assert from "assert";
-import Todo from "../lib/todo";
+import Todos from "../lib/todos";
 import { append, last, head } from "ramda";
 
-describe("Todo", () => {
+describe("Todos", () => {
   let events;
   let ids;
   let times;
@@ -19,13 +19,13 @@ describe("Todo", () => {
   });
 
   it("starts with an empty todo list", () => {
-    const state = Todo.of(events).state();
+    const state = Todos.of(events).state();
     assert.deepEqual(state, { todos: [] });
   });
 
   it("adds new todos", () => {
     const state =
-      Todo
+      Todos
         .of(events)
         .dispatch({ type: "addTodo", text: "wash dishes" }, collectIdAndTime)
         .dispatch({ type: "addTodo", text: "walk the dog" }, collectIdAndTime)
@@ -54,7 +54,7 @@ describe("Todo", () => {
 
   it("toggles an existing todo", () => {
     const state =
-      Todo
+      Todos
         .of(events)
         .dispatch({ type: "addTodo", text: "wash dishes" }, collectIdAndTime)
         .dispatch({ type: "addTodo", text: "walk the dog" }, collectIdAndTime)
