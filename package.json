@@ -12,7 +12,7 @@
     "bravent": "^0.1.0",
     "express": "^4.13.4",
     "moment": "^2.14.1",
-    "predicado": "0.0.2",
+    "predicado": "0.0.5",
     "ramda": "^0.19.1",
     "uuid": "^2.0.1"
   },
